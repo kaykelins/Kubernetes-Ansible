@@ -1,0 +1,9 @@
+---
+- include: "{{ item }}"
+  loop:
+    - k8s-install.yml
+    - k8s-start-kubelet.yml
+    - k8s-ip-tables-rules.yml
+    - k8s-swap-memory.yml
+    - k8s-selinux.yml
+    - k8s-download-images.yml

@@ -1,0 +1,5 @@
+---
+- include: "{{ item }}"
+  loop:
+    - docker-install.yml
+    - docker-start.yml

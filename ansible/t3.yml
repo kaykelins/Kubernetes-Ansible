@@ -1,0 +1,27 @@
+---
+- name: pre-deploy k8s 
+  hosts: all
+  remote_user: vagrant
+  become: yes
+
+  roles:
+  - docker 
+  - k8s
+
+- name: start k8s master
+  hosts: node1
+  remote_user: vagrant
+  become: yes
+
+  roles:
+  - k8s-master
+
+- name: start k8s worker
+  hosts: 
+    - node2
+    - node3
+  remote_user: vagrant
+  become: yes
+
+  roles:
+  - k8s-worker

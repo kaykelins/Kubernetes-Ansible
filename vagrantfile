@@ -1,0 +1,21 @@
+N = 3git remote add origin https://github.com/kaykelins/Kubernetes-Ansible.git
+(1..N).each do |node_id|
+    Vagrant.configure("2") do |config|
+      config.vm.define "node#{node_id}" do |node|
+      node.vm.hostname = "node#{node_id}"
+      node.vm.box = "centos/7"
+      node.vm.network "public_network", bridge: "wlp1s0", ip: "192.168.0.#{50+node_id}"
+      node.vm.provider "virtualbox" do |vb|
+        vb.cpus = "2"
+        vb.memory = "2048"
+      end
+      if node_id == N
+        node.vm.provision :ansible do |ansible|
+          # Disable default limit to connect to all the machines
+          ansible.limit = "all"
+          ansible.playbook = "ansible/t3.yml"
+        end
+      end
+    end
+  end
+end

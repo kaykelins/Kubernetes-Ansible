@@ -1,0 +1,11 @@
+- name: k8s ip6tables conf
+  sysctl: 
+    name: net.bridge.bridge-nf-call-ip6tables
+    state: present 
+    value: "1"
+
+- name: k8s iptables conf
+  sysctl:
+    name: net.bridge.bridge-nf-call-iptables
+    value: "1"
+    state: present

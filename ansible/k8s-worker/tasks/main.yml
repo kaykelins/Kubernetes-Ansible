@@ -1,0 +1,7 @@
+---
+# tasks file for k8s-worker
+- name: join command
+  debug:
+    msg: "{{ hostvars['node1']['output']}}"
+- name: join node
+  command: "{{hostvars['node1']['output']}}"

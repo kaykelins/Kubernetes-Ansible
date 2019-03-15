@@ -1,0 +1,3 @@
+---
+- name: download images for kubernetes
+  command: kubeadm config images pull

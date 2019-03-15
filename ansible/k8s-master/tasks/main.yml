@@ -1,0 +1,18 @@
+---
+# tasks file for k8s-server
+- name: start k8s master  
+  command: kubeadm init --apiserver-advertise-address={{address}} --pod-network-cidr={{cidr_flannel}}
+  register: output
+
+- name: start flannel
+  command: kubectl apply -f {{flannel}}
+  environment:
+    KUBECONFIG: /etc/kubernetes/admin.conf
+
+- name: k8s output
+  debug:
+    msg: "{{output.stdout_lines[-1]}}"
+
+- name: set join command to fact
+  set_fact: 
+    output: "{{output.stdout_lines[-1]}}"
