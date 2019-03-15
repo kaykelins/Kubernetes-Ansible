@@ -1,4 +1,4 @@
-N = 3git remote add origin https://github.com/kaykelins/Kubernetes-Ansible.git
+N = 3
 (1..N).each do |node_id|
     Vagrant.configure("2") do |config|
       config.vm.define "node#{node_id}" do |node|
