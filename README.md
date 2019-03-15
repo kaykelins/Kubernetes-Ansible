@@ -1,1 +1,1 @@
-t3_k8s_ok
+Simple 3 node Kubernetes cluster with kubeadm and flannel cidr
